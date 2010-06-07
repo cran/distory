@@ -174,7 +174,7 @@ extern "C"
         int scaleM = asInteger(scale_method);
 
         unsigned len = length(distmatrix);
-        unsigned n = sqrt(len);
+        unsigned n = sqrt(static_cast<double>(len));
         double *d = REAL(distmatrix);
 
         SEXP g;

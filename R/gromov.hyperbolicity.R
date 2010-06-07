@@ -24,7 +24,7 @@ gromov.hyperbolicity <- function(d, deltas = FALSE, scale = NA)
         stop("Unknown or ambiguous scale method.");
     }
 
-    .Call("gromov_distmatrix", as.real(d), as.logical(deltas),
+    .Call("gromov_distmatrix", as.double(d), as.logical(deltas),
             as.integer(scaleV), PACKAGE="distory")
 }
 
