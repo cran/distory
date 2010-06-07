@@ -270,7 +270,7 @@ double gromov_graycode(double *m, size_t n, double *deltas, int scale)
 {
     /* implements Knuth 7.2.1.3 Alg R (Revolving Door) */
 
-    unsigned c[] = {-1,0,1,2,3,n}; 
+    unsigned c[] = {(unsigned)-1,0,1,2,3,(unsigned)n}; 
     unsigned t = 4; 
     unsigned j; 
 
@@ -340,7 +340,7 @@ R2:
     }
 
     i++;
-R3: /* N.B. assumes t is even */
+//R3: /* N.B. assumes t is even */
     if(c[1] > 0) 
     {
         c[1]--;
