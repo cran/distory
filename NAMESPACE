@@ -1,0 +1,6 @@
+useDynLib("distory")
+
+# Export all names
+exportPattern(".")
+
+import(ape)
