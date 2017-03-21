@@ -1,4 +1,4 @@
-f168f781a67f6e7f7ab62ae647228db3 *DESCRIPTION
+4e14c02ca38b130aa19d95ba5ec5d3dc *DESCRIPTION
 26de99ccfb9ca8a2a213a4818be3b0bf *NAMESPACE
 850d5d746dff4c1e7e623fe7cd35b03a *R/bethe.tree.R
 a2ed747f17ee32505c78a67a2ab03945 *R/bin.multiPhylo.R
@@ -20,7 +20,7 @@ d679ae0bc472e781b887c1506f70d7bd *man/phylo.diff.Rd
 0d297ad815b52a39bfe52ca3075b8a32 *man/position.leverage.Rd
 f4d2b55dddfbaca90b778b3e1f45e536 *src/newick.cpp
 76960301ce979b7a7595211c7f3df496 *src/newick.h
-578f0107cf2171675d24aa978bc145e0 *src/phydist_r.cpp
+5f84e1edcdbd8fde7662fc282747fed1 *src/phydist_r.cpp
 ab78adf7f6f16d7cbc09a1265f36b4e1 *src/phylo.h
 32800a06d5f51921d0ce2c1ba960bff1 *src/treedist-stripped.cpp
 16f8de5df9c6f8798a3e6f57495ec821 *src/treedist.h

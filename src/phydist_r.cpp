@@ -20,6 +20,7 @@
 
 #include <R.h>
 #include <Rinternals.h>
+#include <Rmath.h> // for fmax2
 
 using namespace std;
 
@@ -309,7 +310,7 @@ R2:
     switch(scale)
     {
         case 2:
-            raw_delta /= fmax(a,b);
+            raw_delta /= fmax2(a,b);
             break;
         case 3:
             double dd[4];
