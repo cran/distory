@@ -27,27 +27,27 @@ dist.multiPhylo <- function(x, method="geodesic", force.multi2di = FALSE,
 
         if(force.multi2di == TRUE)
         {
-            x <- lapply(x, function(k) 
-                  { 
+            x <- lapply(x, function(k)
+                  {
                     if(class(k) == "phylo")
                     {
-                    multi2di(k,random=use.random.resolution) 
+                    multi2di(k,random=use.random.resolution)
                     }
                     else NA
-                  }) 
+                  })
         }
         else if(convert.multifurcating == TRUE) # won't resolve multifurcations at the root
         {
-            x <- lapply(x, function(k) 
-                  { 
+            x <- lapply(x, function(k)
+                  {
                     if(class(k) == "phylo")
                     {
-                        if(!is.binary.tree(k))
-                            multi2di(k,random=use.random.resolution) 
-                        else k 
+                        if(!is.binary.phylo(k))
+                            multi2di(k,random=use.random.resolution)
+                        else k
                     }
                     else NA
-                  }) 
+                  })
 
         }
 
@@ -88,11 +88,11 @@ dist.multiPhylo <- function(x, method="geodesic", force.multi2di = FALSE,
 
         # do some sanity checks before we start out
 
-        r <- lapply(x, function(k) 
-                { 
+        r <- lapply(x, function(k)
+                {
                 if(class(k) == "phylo")
                 {
-                    is.rooted(k) 
+                    is.rooted(k)
                 }
                 else NA
                 })
@@ -102,7 +102,7 @@ dist.multiPhylo <- function(x, method="geodesic", force.multi2di = FALSE,
             stop("Some trees are not rooted. Specify an outgroup to fix this problem. All trees must be rooted.\n")
         }
 
-        r <- lapply(x, function(k) { if(class(k) == "phylo") is.binary.tree(k) else NA })
+        r <- lapply(x, function(k) { if(class(k) == "phylo") is.binary.phylo(k) else NA })
         if(!all(as.logical(r), na.rm=TRUE))
         {
             stop("Some trees are not binary. All input trees must be strictly binary.\n")
@@ -121,7 +121,7 @@ dist.multiPhylo <- function(x, method="geodesic", force.multi2di = FALSE,
         # convert our list of class phylo to a list of strings
         treestrs <- lapply(x, function(k) { if(class(k) == "phylo")
                 write.tree(k) else "" })
-        
+
         method=tolower(method)
 
         method.id = pmatch(method, c("edgeset", "geodesic"))
@@ -129,11 +129,11 @@ dist.multiPhylo <- function(x, method="geodesic", force.multi2di = FALSE,
         # call the C interface function and return the value automatically
         if(method.id == 1)
         {
-            rv <- .Call("phycpp_bin_trees", treestrs, PACKAGE="distory")
+            rv <- .Call(phycpp_bin_trees, treestrs)
         }
         else if(method.id == 2)
         {
-            rv <- .Call("phycpp_compute_tree_distance_set", treestrs, as.logical(verbose), PACKAGE="distory")
+            rv <- .Call(phycpp_compute_tree_distance_set, treestrs, as.logical(verbose))
         }
         else
         {
