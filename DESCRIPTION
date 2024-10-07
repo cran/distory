@@ -1,9 +1,11 @@
 Package: distory
-Version: 1.4.4
-Date: 2020-04-19
+Version: 1.4.5
+Date: 2024-10-07
 Title: Distance Between Phylogenetic Histories
-Author: John Chakerian [aut, cre], Susan Holmes [aut, cre]
-Maintainer: Emmanuel Paradis <Emmanuel.Paradis@ird.fr>
+Authors@R: c(person(given = "John", family = "Chakerian", role = c("aut")),
+   person(given = "Susan", family = "Holmes", role = c("aut")),
+   person(given = "Emmanuel", family = "Paradis", role = "cre",
+          email = "Emmanuel.Paradis@ird.fr"))
 Depends: ape (>= 5.0)
 Imports: graphics, stats
 Description: Geodesic distance between phylogenetic trees and
@@ -12,6 +14,10 @@ Description: Geodesic distance between phylogenetic trees and
   phylogenetic trees." <doi:10.1006/aama.2001.0759>.
 License: BSD_3_clause + file LICENSE
 NeedsCompilation: yes
-Packaged: 2020-04-19 03:33:59 UTC; paradis
+Packaged: 2024-10-07 19:48:04 UTC; paradis
+Author: John Chakerian [aut],
+  Susan Holmes [aut],
+  Emmanuel Paradis [cre]
+Maintainer: Emmanuel Paradis <Emmanuel.Paradis@ird.fr>
 Repository: CRAN
-Date/Publication: 2020-04-19 09:00:02 UTC
+Date/Publication: 2024-10-07 21:20:02 UTC

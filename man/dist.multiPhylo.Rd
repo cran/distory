@@ -32,7 +32,7 @@ dist.multiPhylo(x, method = "geodesic", force.multi2di = FALSE,
     ape function 'root' on every tree in the list.}
   \item{convert.multifurcating}{
     Setting this option will check every tree for multifurcations using the
-    ape function 'is.binary.tree' - if it returns FALSE, the ape function
+    ape function 'is.binary.phylo' - if it returns FALSE, the ape function
     'multi2di' will be called on it. Note that this does not ensure a tree
     is strictly binary, since ape considers an unrooted tree binary even if
     the root node is trifurcating. This option can be used in conjunction

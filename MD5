@@ -1,10 +1,10 @@
-29304ea5f131e14a9b05128c0096d072 *DESCRIPTION
+4a948090c595af293f2815350826ea15 *DESCRIPTION
 22cf79908ff979b1ccf61d093167990c *LICENSE
 659dae8baf93188f3cb225c3f2be88a6 *NAMESPACE
-a1a7b911567b21803f323b78805704a9 *NEWS
+37036e2b36a2138af73a3f9524530d4b *NEWS
 850d5d746dff4c1e7e623fe7cd35b03a *R/bethe.tree.R
 a2ed747f17ee32505c78a67a2ab03945 *R/bin.multiPhylo.R
-21578a173088fd458f97e92d8d856072 *R/dist.multiPhylo.R
+b8d66e43385f42534e5d24f49a3745ee *R/dist.multiPhylo.R
 0c4a3430217babff21aa779cda40589f *R/gromov.hyperbolicity.R
 4606b7200fc81f8a2c8204b170d8e19a *R/mcmc.target.seq.R
 056d8a5ee03dc5dd336ed03dd90357e7 *R/orthant.boundary.tree.R
@@ -13,7 +13,7 @@ b9984556b72472e92c3b298ddcd06df5 *R/position.leverage.R
 b645bf9091131f9aafecc84714c99776 *R/zzz.R
 b52d734c21851961c9dbd937f1a5bb1d *man/bethe.tree.Rd
 7b411270bd4a9d3bfc6222b9547173c7 *man/bin.multiPhylo.Rd
-c1cad01c56ee9e476006294b16672b4c *man/dist.multiPhylo.Rd
+d670952c52216d3d70ba293ea635e699 *man/dist.multiPhylo.Rd
 30d355dcb7a5b0afb2b4db8172025672 *man/distory-package.Rd
 bfb9d55ab817f217405415650a9fca2c *man/gromov.hyperbolicity.Rd
 11026a8b477487e8562a24e6e801c44b *man/mcmc.target.seq.Rd
@@ -21,9 +21,9 @@ bfb9d55ab817f217405415650a9fca2c *man/gromov.hyperbolicity.Rd
 62fa8a5cf68c312c16948510063013a7 *man/phylo.diff.Rd
 87291ab9b8b2bdad9687a1198920fd0d *man/position.leverage.Rd
 7cac7222e5dbfec64aaa99579562258b *src/distory.c
-f4d2b55dddfbaca90b778b3e1f45e536 *src/newick.cpp
+ca189f690aa6e43ed8342032205554d5 *src/newick.cpp
 76960301ce979b7a7595211c7f3df496 *src/newick.h
-5f84e1edcdbd8fde7662fc282747fed1 *src/phydist_r.cpp
+665be8888b4053a83c4bedf0952e4d8a *src/phydist_r.cpp
 ab78adf7f6f16d7cbc09a1265f36b4e1 *src/phylo.h
-32800a06d5f51921d0ce2c1ba960bff1 *src/treedist-stripped.cpp
+ebe0e11d6ed1341c68b438943d9b4106 *src/treedist-stripped.cpp
 16f8de5df9c6f8798a3e6f57495ec821 *src/treedist.h

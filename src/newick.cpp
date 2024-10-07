@@ -11,6 +11,8 @@
  *
  */
 
+#define R_NO_REMAP
+
 #include <iostream>
 #include <algorithm>
 #include <cstdlib>
@@ -308,7 +310,7 @@ close_nesting:
 
 error:
     if(errstr == "") errstr = "Parser ran off the edge.";
-    error("An error was encountered in parsing near position %d: %s\n", pos, errstr.c_str());
+    Rf_error("An error was encountered in parsing near position %d: %s\n", pos, errstr.c_str());
 
     return vector<PhyEdge>();
     

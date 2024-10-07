@@ -11,6 +11,8 @@
  *
  */
 
+#define R_NO_REMAP
+
 #include <algorithm>
 #include <vector>
 #include <fstream>
@@ -66,10 +68,10 @@ extern "C"
     {
         SEXP distmatrix;
 
-        bool be_verbose = asLogical(verbose);
+        bool be_verbose = Rf_asLogical(verbose);
 
         // get number of trees
-        int len = length(trees);
+        int len = Rf_length(trees);
 
         vector<string> treevec(len);
 
@@ -77,7 +79,7 @@ extern "C"
         for(int i = 0; i < len; i++)
             treevec[i] = CHAR(STRING_ELT(VECTOR_ELT(trees,i),0));
 
-        PROTECT(distmatrix = allocMatrix(REALSXP,len, len));
+        PROTECT(distmatrix = Rf_allocMatrix(REALSXP,len, len));
 
         compute_phylo_distance_matrix(treevec, be_verbose, REAL(distmatrix));
 
@@ -93,13 +95,13 @@ extern "C"
 
     SEXP multiset_diff_integer(SEXP set1, SEXP set2)
     {
-        unsigned len1 = length(set1);
+        unsigned len1 = Rf_length(set1);
         int *s1 = INTEGER(set1);
-        unsigned len2 = length(set2);
+        unsigned len2 = Rf_length(set2);
         int *s2 = INTEGER(set2);
 
         SEXP newset;
-        PROTECT(newset = allocVector(INTSXP, len1));
+        PROTECT(newset = Rf_allocVector(INTSXP, len1));
         int *a = INTEGER(newset);
 
         unsigned p=0;
@@ -133,7 +135,7 @@ extern "C"
     SEXP phycpp_bin_trees(SEXP treelist)
     {
         // get number of trees
-        int len = length(treelist);
+        int len = Rf_length(treelist);
 
         vector<string> treevec(len);
 
@@ -145,7 +147,7 @@ extern "C"
         build_tree_list(treevec, trees, false);
 
         SEXP distmatrix;
-        PROTECT(distmatrix = allocMatrix(REALSXP,len,len));
+        PROTECT(distmatrix = Rf_allocMatrix(REALSXP,len,len));
         double *d = REAL(distmatrix);
 
         unsigned int sz = trees.size();
@@ -171,10 +173,10 @@ extern "C"
 
     SEXP gromov_distmatrix(SEXP distmatrix, SEXP bDeltas, SEXP scale_method)
     {
-        bool list_deltas = asLogical(bDeltas);
-        int scaleM = asInteger(scale_method);
+        bool list_deltas = Rf_asLogical(bDeltas);
+        int scaleM = Rf_asInteger(scale_method);
 
-        unsigned len = length(distmatrix);
+        unsigned len = Rf_length(distmatrix);
         unsigned n = sqrt(static_cast<double>(len));
         double *d = REAL(distmatrix);
 
@@ -182,13 +184,13 @@ extern "C"
 
         if(list_deltas)
         {
-            PROTECT(g = allocVector(REALSXP, (n*(n-1)*(n-2)*(n-3))/(4*3*2)));
+            PROTECT(g = Rf_allocVector(REALSXP, (n*(n-1)*(n-2)*(n-3))/(4*3*2)));
             gromov_graycode(d, n, REAL(g), scaleM);
             UNPROTECT(1);
         }
         else
         {
-            PROTECT(g = allocVector(REALSXP, 1));
+            PROTECT(g = Rf_allocVector(REALSXP, 1));
             REAL(g)[0] = gromov_graycode(d, n, NULL, scaleM); 
             UNPROTECT(1);
         }

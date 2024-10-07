@@ -5,7 +5,7 @@ dist.multiPhylo <- function(x, method="geodesic", force.multi2di = FALSE,
     if(length(x) < 2)
         return(matrix())
 
-    if(class(x) == "multiPhylo") # ideally, we will have this
+    if(inherits(x, "multiPhylo")) # ideally, we will have this
     {
         # run checks if appropriate
         # separate it out into a vector of strings
@@ -14,7 +14,7 @@ dist.multiPhylo <- function(x, method="geodesic", force.multi2di = FALSE,
         {
             x <- lapply(x, function(k)
                     {
-                    if(class(k) == "phylo")
+                    if(inherits(k, "phylo"))
                     {
                         if(!is.rooted(k))
                             root(k, outgroup, resolve.root = TRUE)
@@ -29,7 +29,7 @@ dist.multiPhylo <- function(x, method="geodesic", force.multi2di = FALSE,
         {
             x <- lapply(x, function(k)
                   {
-                    if(class(k) == "phylo")
+                    if(inherits(k, "phylo"))
                     {
                     multi2di(k,random=use.random.resolution)
                     }
@@ -40,7 +40,7 @@ dist.multiPhylo <- function(x, method="geodesic", force.multi2di = FALSE,
         {
             x <- lapply(x, function(k)
                   {
-                    if(class(k) == "phylo")
+                    if(inherits(k, "phylo"))
                     {
                         if(!is.binary.phylo(k))
                             multi2di(k,random=use.random.resolution)
@@ -53,12 +53,12 @@ dist.multiPhylo <- function(x, method="geodesic", force.multi2di = FALSE,
 
         if(!is.null(scale))
         {
-            if(class(scale) == "phylo")
+            if(inherits(scale, "phylo"))
             {
                 T <- sum(scale$edge.length)
                 x <- lapply(x, function(k)
                         {
-                            if(class(k) == "phylo")
+                            if(inherits(k, "phylo"))
                             {
                                 k$edge.length = k$edge.length * (T /
                                     sum(k$edge.length))
@@ -67,11 +67,11 @@ dist.multiPhylo <- function(x, method="geodesic", force.multi2di = FALSE,
                             else NA
                             })
             }
-            else if(class(scale) == "numeric")
+            else if(inherits(scale, "numeric"))
             {
                 x <- lapply(x, function(k)
                         {
-                            if(class(k) == "phylo")
+                            if(inherits(k, "phylo"))
                             {
                                 k$edge.length = k$edge.length * (scale /
                                     sum(k$edge.length))
@@ -90,7 +90,7 @@ dist.multiPhylo <- function(x, method="geodesic", force.multi2di = FALSE,
 
         r <- lapply(x, function(k)
                 {
-                if(class(k) == "phylo")
+                if(inherits(k, "phylo"))
                 {
                     is.rooted(k)
                 }
@@ -102,7 +102,7 @@ dist.multiPhylo <- function(x, method="geodesic", force.multi2di = FALSE,
             stop("Some trees are not rooted. Specify an outgroup to fix this problem. All trees must be rooted.\n")
         }
 
-        r <- lapply(x, function(k) { if(class(k) == "phylo") is.binary.phylo(k) else NA })
+        r <- lapply(x, function(k) { if(inherits(k, "phylo")) is.binary.phylo(k) else NA })
         if(!all(as.logical(r), na.rm=TRUE))
         {
             stop("Some trees are not binary. All input trees must be strictly binary.\n")
@@ -110,7 +110,7 @@ dist.multiPhylo <- function(x, method="geodesic", force.multi2di = FALSE,
 
         # check to make sure all trees have the same tip labels
         tips = x[[1]]$tip.label
-        r <- lapply(x, function(k) { if(class(k) == "phylo") setequal(k$tip.label,
+        r <- lapply(x, function(k) { if(inherits(k, "phylo")) setequal(k$tip.label,
                     tips) else NA})
 
         if(!all(as.logical(r), na.rm=TRUE))
@@ -119,7 +119,7 @@ dist.multiPhylo <- function(x, method="geodesic", force.multi2di = FALSE,
         }
 
         # convert our list of class phylo to a list of strings
-        treestrs <- lapply(x, function(k) { if(class(k) == "phylo")
+        treestrs <- lapply(x, function(k) { if(inherits(k, "phylo"))
                 write.tree(k) else "" })
 
         method=tolower(method)
@@ -145,7 +145,7 @@ dist.multiPhylo <- function(x, method="geodesic", force.multi2di = FALSE,
 
     else if(typeof(x) == "list")
     {
-        if(class(x[[1]]) == "phylo") # a list of phylo's that for some reason is not classed as multiPhylo
+        if(inherits(x[[1]], "phylo")) # a list of phylo's that for some reason is not classed as multiPhylo
         {
             class(x) <- "multiPhylo" # it already is basically a multiPhylo anyways - we'll mark it as such
             dist.multiPhylo(x, method=method, force.multi2di=force.multi2di, outgroup=outgroup,
@@ -153,7 +153,7 @@ dist.multiPhylo <- function(x, method="geodesic", force.multi2di = FALSE,
                         use.random.resolution=use.random.resolution,
                         scale=scale, verbose=verbose)
         }
-        else if(class(x[[1]]) == "character") # a list of strings, presuming one tree each, properly terminated
+        else if(inherits(x[[1]], "character")) # a list of strings, presuming one tree each, properly terminated
         {
             # read with /ape/, run checks, dump back
             t <- paste(x, sep="", collapse="")
@@ -164,7 +164,7 @@ dist.multiPhylo <- function(x, method="geodesic", force.multi2di = FALSE,
                         scale=scale, verbose=verbose)
         }
     }
-    else if(class(x) == "character") # this is for one string containing multiple trees
+    else if(inherits(x, "character")) # this is for one string containing multiple trees
     {
         # read with ape and dump back to a vector of strings
         k <- read.tree(text=x)

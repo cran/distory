@@ -16,6 +16,8 @@
  *
  */
 
+#define R_NO_REMAP
+
 #include <iostream>
 #include <algorithm>
 #include <vector>
